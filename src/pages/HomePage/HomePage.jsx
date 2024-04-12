@@ -22,7 +22,6 @@ export const HomePage = () => {
         setProducts(data);
         setIsLoading(false);
       } catch (error) {
-        setError('Chyba při spojení s API');
         setIsLoading(false);
         console.error('Chyba při spojení s API:', error);
       }
