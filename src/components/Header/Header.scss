@@ -1,0 +1,31 @@
+.header {
+  margin: 0 auto;
+  background-color: #cccccc;
+  color: #000000;
+
+  &__container {
+    padding: 20px 40px;
+    max-width: 640px;
+
+    @media screen and (min-width: 720px) {
+      padding: 20px 120px;
+      max-width: 1200px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    color: #000000;
+    text-decoration: none;
+
+    &:hover .header__title {
+      transform: scale(1.1);
+    }
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 400;
+    transition: transform 0.5s;
+  }
+}

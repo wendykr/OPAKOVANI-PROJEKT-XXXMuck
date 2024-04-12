@@ -1,0 +1,15 @@
+.productItem {
+  text-decoration: none;
+  color: #000000;
+
+  &__image {
+    width: 290px;
+    height: 330px;
+  }
+
+  &__title {
+    margin: 30px 0;
+    font-size: 24px;
+    font-weight: 400;
+  }
+}

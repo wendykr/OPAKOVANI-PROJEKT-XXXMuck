@@ -1,0 +1,26 @@
+.productPage {
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+
+  @media screen and (min-width: 720px) {
+    margin: 120px;
+  }
+
+  &__image {
+    width: 360px;
+    height: 400px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin: 16px 0;
+    font-size: 34;
+    font-weight: 400;
+  }
+}
