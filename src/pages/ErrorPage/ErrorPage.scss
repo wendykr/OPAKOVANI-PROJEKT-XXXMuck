@@ -1,0 +1,32 @@
+.errorPage {
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  &__title {
+    margin: 40px 0;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: #6d6d6d;
+  }
+
+  &__link {
+    color: #333333;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    &:hover {
+      color: #000000;
+      text-decoration: none;
+    }
+  }
+}
+
