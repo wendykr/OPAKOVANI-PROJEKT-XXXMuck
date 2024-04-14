@@ -5,6 +5,7 @@ import { ProductList } from '../../components/ProductList/ProductList';
 export const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -12,8 +13,10 @@ export const HomePage = () => {
         const response = await fetch('https://apps.kodim.cz/react-2/xxxmuck/products');
         if (!response.ok) {
           if (response.status === 400) {
+            setError('Load data error');
             setIsLoading(false);
           } else {
+            setError('Load data error');
             setIsLoading(false);
           }
           return;
@@ -22,6 +25,7 @@ export const HomePage = () => {
         setProducts(data);
         setIsLoading(false);
       } catch (error) {
+        setError('Load data error');
         setIsLoading(false);
         console.error('Chyba při spojení s API:', error);
       }
@@ -39,10 +43,10 @@ export const HomePage = () => {
       </div>
       {
         isLoading ?
-          <div>
-            Loading data ...
-          </div>
-        :
+          <div>Loading data ...</div>
+        : error ? 
+          <div>{error}</div>
+        : 
           <ProductList products={products} />
       }
     </main>
