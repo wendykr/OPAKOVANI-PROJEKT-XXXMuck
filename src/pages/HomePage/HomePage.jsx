@@ -1,38 +1,7 @@
-import {useState, useEffect} from 'react';
 import './HomePage.scss';
 import { ProductList } from '../../components/ProductList/ProductList';
 
-export const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://apps.kodim.cz/react-2/xxxmuck/products');
-        if (!response.ok) {
-          if (response.status === 400) {
-            setError('Load data error');
-            setIsLoading(false);
-          } else {
-            setError('Load data error');
-            setIsLoading(false);
-          }
-          return;
-        }
-        const data = await response.json();
-        setProducts(data);
-        setIsLoading(false);
-      } catch (error) {
-        setError('Load data error');
-        setIsLoading(false);
-        console.error('Chyba při spojení s API:', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+export const HomePage = ({ products, isLoading, error }) => {
 
   return (
     <main className="home">
