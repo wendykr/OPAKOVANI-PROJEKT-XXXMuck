@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage';
 
-let products = [];
 let error = null;
 let isLoading = true;
 
@@ -24,9 +23,9 @@ const fetchProducts = async () => {
       return;
     }
     const data = await response.json();
-    products = data;
-    console.log(products);
+    const products = data;
     isLoading = false;
+    return products;
   } catch (err) {
     error = 'Load data error';
     isLoading = false;
@@ -34,13 +33,15 @@ const fetchProducts = async () => {
   }
 };
 
-fetchProducts();
+const productData = await fetchProducts();
+
+console.log(productData);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="/" products={products} isLoading={isLoading} error={error} element={<HomePage />} />
-      <Route path="/product/:productId" products={products} isLoading={isLoading} error={error} element={<ProductPage />} />
+      <Route path="/" products={productData} isLoading={isLoading} error={error} element={<HomePage />} />
+      <Route path="/product/:productId" products={productData} isLoading={isLoading} error={error} element={<ProductPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
   ),
