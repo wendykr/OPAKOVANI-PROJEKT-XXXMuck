@@ -29,20 +29,38 @@ const fetchProducts = async () => {
   } catch (err) {
     error = 'Load data error';
     isLoading = false;
-    console.error('Chyba při spojení s API:', error);
   }
 };
 
 const productData = await fetchProducts();
 
-console.log(productData);
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="/" products={productData} isLoading={isLoading} error={error} element={<HomePage />} />
-      <Route path="/product/:productId" products={productData} isLoading={isLoading} error={error} element={<ProductPage />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route
+        path="/"
+        element={
+          <HomePage
+            products={productData}
+            isLoading={isLoading}
+            error={error}
+          />
+        }
+      />
+      <Route
+        path="/product/:productId"
+        element={
+          <ProductPage
+            products={productData}
+            isLoading={isLoading}
+            error={error}
+          />
+        }
+      />
+      <Route
+        path="*"
+        element={<ErrorPage />}
+      />
     </Route>
   ),
   { basename: "/OPAKOVANI-PROJEKT-XXXMuck" }
