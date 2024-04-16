@@ -32,40 +32,44 @@ const fetchProducts = async () => {
   }
 };
 
-const productData = await fetchProducts();
+const createRouter = async () => {
+  const productData = await fetchProducts();
+  
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<App />}>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              products={productData}
+              isLoading={isLoading}
+              error={error}
+            />
+          }
+        />
+        <Route
+          path="/product/:productId"
+          element={
+            <ProductPage
+              products={productData}
+              isLoading={isLoading}
+              error={error}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={<ErrorPage />}
+        />
+      </Route>
+    ),
+    { basename: "/OPAKOVANI-PROJEKT-XXXMuck" }
+  );
+  
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <RouterProvider router={router} />
+  );
+};
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route
-        path="/"
-        element={
-          <HomePage
-            products={productData}
-            isLoading={isLoading}
-            error={error}
-          />
-        }
-      />
-      <Route
-        path="/product/:productId"
-        element={
-          <ProductPage
-            products={productData}
-            isLoading={isLoading}
-            error={error}
-          />
-        }
-      />
-      <Route
-        path="*"
-        element={<ErrorPage />}
-      />
-    </Route>
-  ),
-  { basename: "/OPAKOVANI-PROJEKT-XXXMuck" }
-);
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
-);
+createRouter();
